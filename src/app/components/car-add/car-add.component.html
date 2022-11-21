@@ -1,0 +1,94 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Add Car</h5>
+            </div>
+            <div class="card-body">
+                <!-- formGroup adına carAddFrom vererek ts deki değişken maplenmiş oluyor -->
+                <form [formGroup]="carAddForm">
+                    <div class="mb-3">
+                        <label for="model">Model Name</label>
+                        <div class="form-group">
+                            <input type="text" id="model" formControlName="model" class="form-control"
+                                placeholder="Model" />
+                        </div>
+                    </div>
+                    <small *ngIf="carAddForm.get('model')?.hasError('required') && carAddForm.get('model')?.touched"
+                        class="form-text text-muted" style="color: red !important;">
+                        You have to enter model name!
+                    </small>
+                    <small *ngIf="carAddForm.get('model')?.hasError('minlength') && carAddForm.get('model')?.dirty"
+                        class="form-text text-muted">
+                        Ürün adı en az iki karakter olmalıdır
+                    </small>
+                    <div class="mb-3">
+                        <label for="brandId">Brand</label>
+                        <div class="form-group">
+                            <select class="form-select" aria-label="Default select example" id="brandId"
+                                style="color: #999;" formControlName="brandId" class="form-control">
+                                <option value="" disabled selected>Select Brand</option>
+                                <option value="{{data.id}}" *ngFor="let data of carBrands">{{data.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <small *ngIf="carAddForm.get('brandId')?.hasError('required') && carAddForm.get('brandId')?.touched"
+                        class="form-text text-muted" style="color: red !important;">
+                        You have to select any Brand in the list!
+                    </small>
+                    <div class="mb-3">
+                        <label for="year">Year</label>
+                        <div class="form-group">
+                            <input type="text" id="year" formControlName="year" class="form-control"
+                                placeholder="Year" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price">Price</label>
+                        <div class="form-group input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control" id="price" formControlName="price"
+                                aria-label="Amount (to the nearest dollar)" value="">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagePath">Image Path</label>
+                        <div class="form-group">
+                            <input type="text" id="imagePath" formControlName="imagePath" class="form-control"
+                                placeholder="Type Image Path" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price">State</label>
+                        <div class="form-group">
+                            <select class="form-control" id="validationDefault04" formControlName="state" required
+                                style="color: #999;">
+                                <option value="" selected disabled>Select Availity</option>
+                                <option value="1">Avaible</option>
+                                <option value="2">Unavaible</option>
+                            </select>
+                        </div>
+                    </div>
+                    <small *ngIf="carAddForm.get('state')?.hasError('required') && carAddForm.get('state')?.touched"
+                        class="form-text text-muted" style="color: red !important;">
+                        You have to select availity of the car!
+                    </small>
+                    <div class="mb-3">
+                        <label for="description">Description</label>
+                        <div class="form-group">
+                            <textarea type="number" id="description" formControlName="description" class="form-control"
+                                placeholder="Description"></textarea>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="add()">Add</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

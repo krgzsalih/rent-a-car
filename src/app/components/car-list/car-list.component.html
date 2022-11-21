@@ -1,0 +1,17 @@
+<div class="car-list">
+    <div *ngFor="let data of carList" class="card whole-card">
+        <img src={{data.imagePath}} class="card-img-top" alt="Cars" style="height: 50%;"
+            routerLink='detail/{{data.id}}'>
+        <div class="card-body card-info">
+            <h4 class="card-title">{{data.model}}</h4>
+            <h6 class="card-text">{{data.year}}</h6>
+            <p class="card-text">{{data.price}}</p>
+        </div>
+        <div class="buttons-div">
+            <button type="button" class="btn btn-primary details" routerLink="detail/{{data.id}}">Details</button>
+            <button type="button" class="btn btn-success update" routerLink="update/{{data.id}}">Update</button>
+        </div>
+    </div>
+</div>
+<ng-template #info>Car list is loading...</ng-template>
+<!-- routerLink -->

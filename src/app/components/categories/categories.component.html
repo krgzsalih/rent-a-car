@@ -1,0 +1,6 @@
+<ul class="list-group">
+    <li (click)="selectedBrandId(data)" class="list-group-item" aria-current="true" routerLink="brand/{{data.id}}"
+        *ngFor="let data of brandsData">
+        {{data.name}}</li>
+</ul>
+<h2>{{carListByBrandId}}</h2>

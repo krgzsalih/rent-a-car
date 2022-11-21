@@ -1,0 +1,78 @@
+.car-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.buttons-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 18rem;
+    margin: 0 10px 10px 10px;
+}
+
+.whole-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 18rem;
+    margin: 0 10px 10px 10px;
+    -webkit-box-shadow: 0px 1px 2px 0px #000000;
+    box-shadow: 0px 1px 2px 0px #000000;
+}
+
+.whole-card::before {
+    content: "";
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+    font-size: 0.8rem;
+    align-items: center;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    border-radius: 5px 5px 0px 0px;
+    background-color: rgba(0, 0, 0, 0.69);
+    backdrop-filter: blur(1px);
+    display: none;
+}
+
+.whole-card:hover::before {
+    box-shadow: 0px 0px 15px rgba(79, 79, 79, 0.866);
+    cursor: pointer;
+    display: flex;
+}
+
+button {
+    width: 50%;
+    height: 3rem;
+    /* height: 100%; */
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    opacity: 0.85;
+    color: black;
+}
+
+.details {
+    background-color: #5F9DF7;
+    border-bottom-left-radius: 5px;
+
+}
+
+.update {
+    background-color: #FF731D;
+    border-bottom-right-radius: 5px;
+
+}

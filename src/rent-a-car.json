@@ -1,0 +1,12 @@
+{
+  "brands": [
+    {
+      "name": "BMW",
+      "id": 1
+    },
+    {
+      "name": "Mercedes",
+      "id": 2
+    }
+  ]
+}
