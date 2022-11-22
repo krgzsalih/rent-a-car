@@ -14,6 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
+import { BrandSearchPipe } from './pipes/brand-search.pipe';
+import { CarSearchPipe } from './pipes/car-search.pipe';
+import { SearchSpecsComponent } from './components/search-specs/search-specs.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
     CarupdateComponent,
     CarAddComponent,
     BrandAddComponent,
+    BrandUpdateComponent,
+    BrandSearchPipe,
+    CarSearchPipe,
+    SearchSpecsComponent,
   ],
   imports: [
     BrowserModule,

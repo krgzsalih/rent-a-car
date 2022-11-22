@@ -57,6 +57,7 @@ export class CarupdateComponent implements OnInit {
     this.updatedCarProps = this.formBuilder.group({
       model: [this.getPrevData[0].model, Validators.required],
       brandId: [this.getPrevData[0].brandId, Validators.required],
+      color: [this.getPrevData[0].color, Validators.required],
       year: [
         this.getPrevData[0].year,
         [Validators.required, Validators.max(4)],

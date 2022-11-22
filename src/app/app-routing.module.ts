@@ -1,3 +1,4 @@
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarListComponent } from './components/car-list/car-list.component';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'brand/:id/update/:id', component: CarupdateComponent },
   { path: 'brand-add', component: BrandAddComponent },
   { path: 'car-add', component: CarAddComponent },
+  { path: 'brand-update', component: BrandUpdateComponent },
 ];
 
 @NgModule({

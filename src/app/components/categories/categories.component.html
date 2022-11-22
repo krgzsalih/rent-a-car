@@ -1,6 +1,9 @@
+<div class="form-group">
+    <input type="text" class="form-control" id="brandFilter" [(ngModel)]="brandFilter" placeholder="Search for brands">
+</div>
 <ul class="list-group">
     <li (click)="selectedBrandId(data)" class="list-group-item" aria-current="true" routerLink="brand/{{data.id}}"
-        *ngFor="let data of brandsData">
+        *ngFor="let data of brandsData | brandSearch:brandFilter">
         {{data.name}}</li>
 </ul>
 <h2>{{carListByBrandId}}</h2>

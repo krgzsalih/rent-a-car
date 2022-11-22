@@ -10,7 +10,7 @@ import { BrandService } from 'src/app/services/brand.service';
 export class CategoriesComponent implements OnInit {
   brandsData: BrandModel[] = [];
   carListByBrandId!: string;
-
+  brandFilter: string = '';
   constructor(private service: BrandService) {}
 
   ngOnInit(): void {
