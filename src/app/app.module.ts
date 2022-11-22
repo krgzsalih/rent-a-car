@@ -17,7 +17,7 @@ import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
 import { BrandSearchPipe } from './pipes/brand-search.pipe';
 import { CarSearchPipe } from './pipes/car-search.pipe';
-import { SearchSpecsComponent } from './components/search-specs/search-specs.component';
+import { ColorsComponent } from './components/colors/colors.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { SearchSpecsComponent } from './components/search-specs/search-specs.com
     BrandUpdateComponent,
     BrandSearchPipe,
     CarSearchPipe,
-    SearchSpecsComponent,
+    ColorsComponent,
   ],
   imports: [
     BrowserModule,

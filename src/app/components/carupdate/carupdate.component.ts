@@ -1,3 +1,5 @@
+import { ColorService } from './../../services/color.service';
+import { ColorModel } from './../../models/ColorsModel';
 import { BrandModel } from './../../models/BrandsModel';
 import { BrandService } from './../../services/brand.service';
 import { ToastrService } from 'ngx-toastr';
@@ -24,12 +26,14 @@ export class CarupdateComponent implements OnInit {
   getPrevData: CarListModel[] = [];
   updatedCarProps!: FormGroup;
   brandNames: BrandModel[] = [];
-  timer: any;
+  colors: ColorModel[] = [];
+  carColor: ColorModel[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private service: CarListService,
     private brandsService: BrandService,
+    private colorService: ColorService,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private goBack: Location
@@ -50,14 +54,27 @@ export class CarupdateComponent implements OnInit {
   getCarsDetails(id: number) {
     this.service.getCarsDetails(id).subscribe((response) => {
       this.getPrevData = response;
+      this.getColors();
+    });
+  }
+  getColors() {
+    this.colorService.getColors().subscribe((response) => {
+      this.colors = response;
+      this.getColorByCar(this.getPrevData[0].colorId);
+    });
+  }
+  getColorByCar(id: number) {
+    this.colorService.getColorsById(id).subscribe((response) => {
+      this.carColor = response;
       this.createCarUpdateForm();
     });
   }
+
   createCarUpdateForm() {
     this.updatedCarProps = this.formBuilder.group({
       model: [this.getPrevData[0].model, Validators.required],
       brandId: [this.getPrevData[0].brandId, Validators.required],
-      color: [this.getPrevData[0].color, Validators.required],
+      colorId: [this.getPrevData[0].colorId, Validators.required],
       year: [
         this.getPrevData[0].year,
         [Validators.required, Validators.max(4)],

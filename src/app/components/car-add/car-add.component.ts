@@ -1,3 +1,5 @@
+import { ColorService } from './../../services/color.service';
+import { ColorModel } from './../../models/ColorsModel';
 import { BrandService } from './../../services/brand.service';
 import { BrandModel } from './../../models/BrandsModel';
 import { CarListService } from './../../services/car-list.service';
@@ -19,9 +21,11 @@ import {
 export class CarAddComponent implements OnInit {
   carAddForm!: FormGroup;
   carBrands: BrandModel[] = [];
+  carColors: ColorModel[] = [];
   constructor(
     private formBuilder: FormBuilder,
     private brandService: BrandService,
+    private colorService: ColorService,
     private carListService: CarListService,
     private toastrService: ToastrService
   ) {}
@@ -29,13 +33,24 @@ export class CarAddComponent implements OnInit {
   ngOnInit(): void {
     this.createCarAddForm();
     this.getCarsBrands();
+    this.getCarsColors();
   }
-
+  getCarsBrands() {
+    this.brandService.getBrands().subscribe((response) => {
+      this.carBrands = response;
+    });
+  }
+  getCarsColors() {
+    this.colorService.getColors().subscribe((response) => {
+      this.carColors = response;
+    });
+  }
   createCarAddForm() {
     this.carAddForm = this.formBuilder.group({
       brandId: ['', Validators.required],
       year: ['', [Validators.required, Validators.max(4)]],
       price: ['', Validators.required],
+      colorId: ['', Validators.required],
       description: ['', Validators.required],
       imagePath: [
         'https://www.avek.com.tr/Images/Blogs/Image/audi-e-tron-elektrikli-arac-1-a5848f86-eb45-4759-9ec2-ac47cea810a1.jpg',
@@ -45,11 +60,7 @@ export class CarAddComponent implements OnInit {
       model: ['', Validators.required],
     });
   }
-  getCarsBrands() {
-    this.brandService.getBrands().subscribe((response) => {
-      this.carBrands = response;
-    });
-  }
+
   add() {
     console.log(this.carAddForm.value);
     if (this.carAddForm.value) {

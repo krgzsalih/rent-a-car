@@ -19,6 +19,15 @@ export class CarListService {
   getCarsDetails(id: number): Observable<CarListModel[]> {
     return this.httpClient.get<CarListModel[]>(this.apiUrl + '?id=' + id);
   }
+  getCarsByColorId(id: number): Observable<CarListModel[]> {
+    return this.httpClient.get<CarListModel[]>(this.apiUrl + '?colorId=' + id);
+  }
+  getCarsByBrandAndColorId(brandId: number, colorId: number) {
+    return this.httpClient.get<CarListModel[]>(
+      this.apiUrl + '?brandId=' + brandId + '&colorId=' + colorId
+    );
+  }
+
   add(data: CarListModel): Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(this.apiUrl, data);
   }

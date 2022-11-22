@@ -32,9 +32,19 @@
                             </select>
                         </div>
                     </div>
-                    <small *ngIf="carAddForm.get('brandId')?.hasError('required') && carAddForm.get('brandId')?.touched"
+                    <div class="mb-3">
+                        <label for="colorId">Color</label>
+                        <div class="form-group">
+                            <select class="form-select" aria-label="Default select example" id="colorId"
+                                style="color: #999;" formControlName="colorId" class="form-control">
+                                <option value="" disabled selected>Select Color</option>
+                                <option value="{{data.id}}" *ngFor="let data of carColors">{{data.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <small *ngIf="carAddForm.get('colorId')?.hasError('required') && carAddForm.get('colorId')?.touched"
                         class="form-text text-muted" style="color: red !important;">
-                        You have to select any Brand in the list!
+                        You have to select Color in the list!
                     </small>
                     <div class="mb-3">
                         <label for="year">Year</label>
