@@ -1,4 +1,3 @@
-import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { CarListModel } from './../../models/CarListModel';
 import { Component, OnInit } from '@angular/core';
@@ -14,43 +13,59 @@ export class CarListComponent implements OnInit {
   carFilter: string = '';
   constructor(
     private service: CarListService,
-    private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['id']) {
-        this.getCarsByBrandId(params['id']);
-      } else if (params['state']) {
-        this.getCarList(params['state']);
-      } else if (params['colorId']) {
-        this.getCarsByColorId(params['colorId']);
-      } else {
-        this.getCarList(1);
-      }
-    });
+    console.log(this.service.selectedBrand.name);
+    console.log(this.service.selectedColor.name);
+
+    // this.activatedRoute.params.subscribe((params) => {
+    //   if (params['id'] && params['colorId']) {
+    //     this.getCarsByBrandAndColorId(params['id'], params['colorId']);
+    //   } else if (params['id']) {
+    //     this.getCarsByBrandId(params['id']);
+    //   } else if (params['colorId']) {
+    //     this.getCarsByColorId(params['colorId']);
+    //   } else {
+    //     this.getCarList();
+    //   }
+    // });
+    this.getCars();
   }
-  getCarList(state: number) {
-    this.service.getCarList(state).subscribe((response) => {
+  getCars() {
+    this.service.getCars().subscribe((response) => {
       this.carList = response;
     });
   }
-  getCarsByBrandId(id: number) {
-    this.service.getCarsByBrandId(id).subscribe((response) => {
-      this.carList = response;
-    });
+  resetSelectedColor() {
+    console.log();
+
+    this.service.resetSelectedColor();
   }
-  getCarsByColorId(id: number) {
-    this.service.getCarsByColorId(id).subscribe((response) => {
-      this.carList = response;
-    });
+  resetSelectedBrand() {
+    this.service.resetSelectedBrand();
   }
-  getCarsByBrandAndColorId(brandId: number, colorId: number) {
-    this.service
-      .getCarsByBrandAndColorId(brandId, colorId)
-      .subscribe((response) => {
-        this.carList = response;
-      });
-  }
+  // getCarList() {
+  //   this.service.getCarList().subscribe((response) => {
+  //     this.carList = response;
+  //   });
+  // }
+  // getCarsByBrandId(id: number) {
+  //   this.service.getCarsByBrandId(id).subscribe((response) => {
+  //     this.carList = response;
+  //   });
+  // }
+  // getCarsByColorId(id: number) {
+  //   this.service.getCarsByColorId(id).subscribe((response) => {
+  //     this.carList = response;
+  //   });
+  // }
+  // getCarsByBrandAndColorId(brandId: number, colorId: number) {
+  //   this.service
+  //     .getCarsByBrandAndColorId(brandId, colorId)
+  //     .subscribe((response) => {
+  //       this.carList = response;
+  //     });
+  // }
 }
