@@ -16,31 +16,28 @@ export class CarListService {
   selectedBrand: BrandModel;
   selectedColor: ColorModel;
 
-  // private brand = new BehaviorSubject('default');
-  // currentBrand = this.brand.asObservable();
-
   constructor(private httpClient: HttpClient) {}
 
   getCars(): Observable<CarListModel[]> {
     return this.httpClient.get<CarListModel[]>(this.createApiUrl());
   }
-  // getCarList(): Observable<CarListModel[]> {
-  //   return this.httpClient.get<CarListModel[]>(this.apiUrl + '?state=1');
-  // }
-  // getCarsByBrandId(id: number): Observable<CarListModel[]> {
-  //   return this.httpClient.get<CarListModel[]>(this.apiUrl + '?brandId=' + id);
-  // }
+  getCarList(): Observable<CarListModel[]> {
+    return this.httpClient.get<CarListModel[]>(this.apiUrl + '?state=1');
+  }
+  getCarsByBrandId(id: number): Observable<CarListModel[]> {
+    return this.httpClient.get<CarListModel[]>(this.apiUrl + '?brandId=' + id);
+  }
   getCarsDetails(id: number): Observable<CarListModel[]> {
     return this.httpClient.get<CarListModel[]>(this.apiUrl + '?id=' + id);
   }
-  // getCarsByColorId(id: number): Observable<CarListModel[]> {
-  //   return this.httpClient.get<CarListModel[]>(this.apiUrl + '?colorId=' + id);
-  // }
-  // getCarsByBrandAndColorId(brandId: number, colorId: number) {
-  //   return this.httpClient.get<CarListModel[]>(
-  //     this.apiUrl + '?brandId=' + brandId + '&colorId=' + colorId
-  //   );
-  // }
+  getCarsByColorId(id: number): Observable<CarListModel[]> {
+    return this.httpClient.get<CarListModel[]>(this.apiUrl + '?colorId=' + id);
+  }
+  getCarsByBrandAndColorId(brandId: number, colorId: number) {
+    return this.httpClient.get<CarListModel[]>(
+      this.apiUrl + '?brandId=' + brandId + '&colorId=' + colorId
+    );
+  }
 
   setSelectedBrand(brand) {
     console.log('setSelectedBrand', brand);
@@ -53,18 +50,18 @@ export class CarListService {
     console.log('Brand', this.selectedBrand);
     this.selectedColor = color;
   }
-  resetSelectedColor() {
-    this.selectedColor = null;
-  }
-  resetSelectedBrand() {
-    this.selectedBrand = null;
-  }
+  // resetSelectedColor() {
+  //   this.selectedColor = null;
+  // }
+  // resetSelectedBrand() {
+  //   this.selectedBrand = null;
+  // }
   createApiUrl() {
     if (this.selectedBrand) {
       this.queryUrl = this.apiUrl + '?brandId=' + this.selectedBrand.id;
     }
     if (this.selectedColor) {
-      this.queryUrl = this.apiUrl + '&colorId=' + this.selectedColor.id;
+      this.queryUrl = this.apiUrl + '?colorId=' + this.selectedColor.id;
     }
     if (this.selectedBrand && this.selectedColor) {
       this.queryUrl =

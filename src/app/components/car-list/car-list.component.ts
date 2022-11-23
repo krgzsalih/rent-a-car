@@ -17,9 +17,6 @@ export class CarListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.service.selectedBrand.name);
-    console.log(this.service.selectedColor.name);
-
     // this.activatedRoute.params.subscribe((params) => {
     //   if (params['id'] && params['colorId']) {
     //     this.getCarsByBrandAndColorId(params['id'], params['colorId']);
@@ -31,21 +28,23 @@ export class CarListComponent implements OnInit {
     //     this.getCarList();
     //   }
     // });
-    this.getCars();
+    this.activatedRoute.params.subscribe((params) => {
+      this.getCars();
+    });
   }
   getCars() {
     this.service.getCars().subscribe((response) => {
       this.carList = response;
     });
   }
-  resetSelectedColor() {
-    console.log();
-
-    this.service.resetSelectedColor();
-  }
-  resetSelectedBrand() {
-    this.service.resetSelectedBrand();
-  }
+  // resetSelectedColor() {
+  //   this.service.resetSelectedColor();
+  //   console.log('resetcolor');
+  // }
+  // resetSelectedBrand() {
+  //   this.service.resetSelectedBrand();
+  //   console.log('resetbrand');
+  // }
   // getCarList() {
   //   this.service.getCarList().subscribe((response) => {
   //     this.carList = response;
